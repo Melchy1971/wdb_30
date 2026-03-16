@@ -4,7 +4,14 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
 
-from app.domain.enums import AnalysisResultStatus, AnalysisRunStatus, ImportRunStatus, RunType
+from app.domain.enums import (
+    AnalysisResultStatus,
+    AnalysisRunStatus,
+    ImportRunStatus,
+    RunType,
+    SourceSystem,
+    SourceValidationStatus,
+)
 
 
 @dataclass(slots=True)
@@ -51,3 +58,17 @@ class AnalysisResult:
     payload: dict[str, Any]
     created_at: datetime
     updated_at: datetime
+
+
+@dataclass(slots=True)
+class Source:
+    source_id: str
+    display_name: str
+    source_system: SourceSystem
+    location_uri: str
+    is_active: bool
+    validation_status: SourceValidationStatus
+    validation_message: str | None
+    last_validated_at: datetime | None
+    updated_at: datetime
+    created_at: datetime

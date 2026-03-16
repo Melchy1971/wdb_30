@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from app.api.error_handlers import register_error_handlers
 from app.api.routes.analysis_runs import router as analysis_runs_router
 from app.api.routes.import_runs import router as import_runs_router
+from app.api.routes.sources import router as sources_router
 from app.core.config import get_settings
 from app.db.init_db import init_db
 from app.db.session import SessionLocal
@@ -25,12 +26,13 @@ def _recover_runs(session: Session) -> None:
     AnalysisRunService(session).recover_stale_runs()
 
 
-def create_app() -> FastAPI:
+def create_app(use_lifespan: bool = True) -> FastAPI:
     settings = get_settings()
-    app = FastAPI(title=settings.app_name, lifespan=lifespan)
+    app = FastAPI(title=settings.app_name, lifespan=lifespan if use_lifespan else None)
     register_error_handlers(app)
     app.include_router(import_runs_router)
     app.include_router(analysis_runs_router)
+    app.include_router(sources_router)
 
     @app.get("/health")
     def health() -> dict[str, str]:

@@ -69,3 +69,18 @@ class AnalysisResultModel(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow)
     analysis_run: Mapped[AnalysisRunModel] = relationship(back_populates="results")
+
+
+class SourceModel(Base):
+    __tablename__ = "sources"
+
+    source_id: Mapped[str] = mapped_column(String(100), primary_key=True)
+    display_name: Mapped[str] = mapped_column(String(255))
+    source_system: Mapped[str] = mapped_column(String(50), index=True)
+    location_uri: Mapped[str] = mapped_column(String(2048))
+    is_active: Mapped[bool] = mapped_column(default=True, index=True)
+    validation_status: Mapped[str] = mapped_column(String(50), index=True, default="pending")
+    validation_message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    last_validated_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow)

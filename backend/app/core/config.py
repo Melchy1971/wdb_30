@@ -33,6 +33,8 @@ class Settings(BaseSettings):
     # Feature Flags
     neo4j_sync_enabled: bool = False  # Sync approved results → Neo4j
 
+    supported_source_extensions: tuple[str, ...] = (".pdf", ".docx", ".txt", ".md", ".eml")
+
     @property
     def database_url(self) -> str:
         return f"sqlite:///{self.sqlite_path.as_posix()}"
