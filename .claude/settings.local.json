@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git ls-tree:*)",
+      "Bash(find /h/Cursor/WDB_30/wdb_30 -type f -name *.py -o -name *.tsx -o -name *.ts)",
+      "Bash(grep -E \"^.*docs/|\\\\.md$\")"
+    ]
+  }
+}
