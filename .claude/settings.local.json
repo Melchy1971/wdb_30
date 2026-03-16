@@ -3,7 +3,20 @@
     "allow": [
       "Bash(git ls-tree:*)",
       "Bash(find /h/Cursor/WDB_30/wdb_30 -type f -name *.py -o -name *.tsx -o -name *.ts)",
-      "Bash(grep -E \"^.*docs/|\\\\.md$\")"
+      "Bash(grep -E \"^.*docs/|\\\\.md$\")",
+      "Bash(pip install:*)",
+      "Bash(python -m uvicorn app.main:app --reload)",
+      "Bash(python -c \"from app.main import app; print\\(''OK''\\)\")",
+      "Bash(ls h:/Cursor/WDB_30/wdb_30/*.db)",
+      "Bash(python -c \":*)",
+      "Bash(taskkill /PID 41976 /F)",
+      "Bash(taskkill /PID 73596 /F)",
+      "Bash(powershell -Command \"netstat -ano | Select-String '':8000''\")",
+      "Bash(powershell -Command \"Get-Process | Where-Object {$_Id -eq 41976 -or $_Id -eq 73596} | Select-Object Id, Name, Path\")",
+      "Bash(powershell.exe -NoProfile -NonInteractive -Command \"Get-Process -Id 41976,73596 -ErrorAction SilentlyContinue | Select-Object Id,Name\")",
+      "Bash(cmd.exe /c \"tasklist /FI \"\"PID eq 41976\"\" 2>&1 & tasklist /FI \"\"PID eq 73596\"\" 2>&1\")",
+      "Bash(cmd.exe /c \"netstat -ano | findstr :8000\")",
+      "Bash(curl -s http://localhost:8000/api/import-runs/)"
     ]
   }
 }
