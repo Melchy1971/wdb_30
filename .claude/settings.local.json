@@ -16,7 +16,8 @@
       "Bash(powershell.exe -NoProfile -NonInteractive -Command \"Get-Process -Id 41976,73596 -ErrorAction SilentlyContinue | Select-Object Id,Name\")",
       "Bash(cmd.exe /c \"tasklist /FI \"\"PID eq 41976\"\" 2>&1 & tasklist /FI \"\"PID eq 73596\"\" 2>&1\")",
       "Bash(cmd.exe /c \"netstat -ano | findstr :8000\")",
-      "Bash(curl -s http://localhost:8000/api/import-runs/)"
+      "Bash(curl -s http://localhost:8000/api/import-runs/)",
+      "Bash(python -c \"from app.routes import export_candidates\")"
     ]
   }
 }
